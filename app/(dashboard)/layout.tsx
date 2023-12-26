@@ -2,16 +2,16 @@
 import NavBar from "@/components/custom/NavBar";
 import React, { useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
+import {
+  Image,
+  LayoutDashboard,
+  MessageCircle,
+  Music,
+  Video,
+} from "lucide-react";
 
 const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = useState(false);
-  const menuItems = [
-    "Dashboard",
-    "Conversation",
-    "Image Generation",
-    "Music Generation",
-    "Video Generation",
-  ];
   return (
     <>
       <button
@@ -62,10 +62,10 @@ const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
         }
         aria-label="Sidebar"
       >
-        <Sidebar menuItems={menuItems} />
+        <Sidebar />
       </aside>
       <div className="p-0 sm:ml-64">
-        <div className="bg-gray-200 p-5">
+        <div className=" p-5">
           <NavBar />
         </div>
         <main className="mt-5 p-2">{children}</main>
