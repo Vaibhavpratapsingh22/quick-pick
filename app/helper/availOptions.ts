@@ -16,9 +16,9 @@ export const availOptions = [
     bgColor: "bg-blue-500/10",
   },
   {
-    name: "Conversations",
+    name: "Conversation",
     icon: MessageCircle,
-    href: "/conversations",
+    href: "/conversation-generation",
     color: "text-green-500",
     bgColor: "bg-green-500/10",
   },

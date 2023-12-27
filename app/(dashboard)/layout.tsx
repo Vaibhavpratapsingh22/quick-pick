@@ -2,13 +2,6 @@
 import NavBar from "@/components/custom/NavBar";
 import React, { useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
-import {
-  Image,
-  LayoutDashboard,
-  MessageCircle,
-  Music,
-  Video,
-} from "lucide-react";
 
 const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = useState(false);

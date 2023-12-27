@@ -2,9 +2,10 @@ import { availOptions } from "@/app/helper/availOptions";
 import { cn } from "@/lib/utils";
 import { Wind } from "lucide-react";
 import React from "react";
-
+import { usePathname } from "next/navigation";
 const Sidebar = () => {
-  const pathName = window.location.pathname;
+  const pathName = usePathname();
+
   return (
     <>
       <div className="h-full px-3 py-4 overflow-y-auto bg-slate-100">
@@ -20,8 +21,8 @@ const Sidebar = () => {
               </h1>
             </a>
           </li>
-          {availOptions?.map((menu) => (
-            <li>
+          {availOptions?.map((menu, index) => (
+            <li key={index}>
               <a
                 href={menu.href}
                 className={cn(
