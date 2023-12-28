@@ -19,7 +19,7 @@ import { Empty } from "@/components/custom/Empty";
 import { EmptyCode } from "@/components/ui/emptyConversation";
 import ReactMarkdown from "react-markdown";
 
-const Conversation = () => {
+const CodeGeneration = () => {
   const router = useRouter();
   const [generatedMessage, setGeneratedMessage] = useState<any[]>([]);
   const [error, setError] = useState<boolean>(false);
@@ -144,4 +144,4 @@ const Conversation = () => {
   );
 };
 
-export default Conversation;
+export default CodeGeneration;
