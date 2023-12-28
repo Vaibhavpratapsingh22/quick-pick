@@ -12,10 +12,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import axios from "axios";
-import Empty from "@/components/custom/Empty";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/custom/user-avatar";
 import BotAvatar from "@/components/custom/bot-avatar";
+import { EmptyConversation } from "@/components/ui/emptyConversation";
+import { Empty } from "@/components/custom/Empty";
 
 const Conversation = () => {
   const router = useRouter();
@@ -108,7 +109,7 @@ const Conversation = () => {
         {isLoading && (
           <div className="flex items-center mt-10 justify-center">
             <div className="relative flex justify-center items-center">
-              <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#ff006a]"></div>
+              <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#111827]"></div>
               <img
                 src="/avatar-thinking.svg"
                 className="rounded-full h-20 w-16"
@@ -117,7 +118,10 @@ const Conversation = () => {
           </div>
         )}
         {generatedMessage.length === 0 && !isLoading && (
-          <Empty label="Please start your conversation." />
+          <Empty
+            label="Please start your conversation."
+            Icon={EmptyConversation}
+          />
         )}
         <div className="flex flex-col-reverse gap-y-4">
           {generatedMessage.map((generated, index) => (
