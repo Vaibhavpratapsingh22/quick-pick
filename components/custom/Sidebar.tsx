@@ -2,18 +2,19 @@ import { availOptions } from "@/app/helper/availOptions";
 import { cn } from "@/lib/utils";
 import { Wind } from "lucide-react";
 import React from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const Sidebar = () => {
   const pathName = usePathname();
+  const router = useRouter();
 
   return (
     <>
       <div className="h-full px-3 py-4 overflow-y-auto bg-slate-100">
-        <ul className="space-y-2 font-medium ">
+        <ul className="space-y-2 font-medium cursor-pointer ">
           <li className="underline border-b-2 ">
             <a
-              href="/dashoard"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              onClick={() => router.push("/dashboard")}
+              className="flex cursor-pointer items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <Wind />
               <h1 className="ms-3 text-2xl font-bold text-[#111827]">
@@ -24,7 +25,7 @@ const Sidebar = () => {
           {availOptions?.map((menu, index) => (
             <li key={index}>
               <a
-                href={menu.href}
+                onClick={() => router.push(menu.href)}
                 className={cn(
                   "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
                   pathName === menu.href ? "bg-gray-200" : null
