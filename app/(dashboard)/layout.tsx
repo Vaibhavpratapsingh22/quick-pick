@@ -13,11 +13,9 @@ const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
         aria-controls="default-sidebar"
         type="button"
         onClick={() => setShow(!show)}
-        className={
-          show
-            ? "inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 sm:hidden hover:bg-gray-100  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ml-[260px]"
-            : "inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500  sm:hidden hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        }
+        className={`inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 sm:hidden hover:bg-gray-100  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ${
+          show ? "!ml-[260px]" : "ml-0"
+        }`}
       >
         {show ? (
           <svg
