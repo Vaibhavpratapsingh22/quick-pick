@@ -151,3 +151,89 @@ export const EmptyImage = () => {
     </svg>
   );
 };
+
+export const EmptyMusic = () => {
+  return (
+    <svg
+      width="60px"
+      height="60px"
+      viewBox="-4 0 34 34"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#5659c8"
+      stroke="#5659c8"
+      transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="#443131"
+        strokeWidth="1.768"
+      >
+        {" "}
+        <g fill="none" fillRule="evenodd">
+          {" "}
+          <g>
+            {" "}
+            <g stroke="#13314e" strokeWidth="2" transform="translate(1 1)">
+              {" "}
+              <rect width="24" height="32" rx="1"></rect>{" "}
+            </g>{" "}
+            <g transform="translate(1 1) translate(5 10)" fill="#215cba">
+              {" "}
+              <ellipse
+                id="Oval-54"
+                transform="rotate(-30 3 11)"
+                cx="3"
+                cy="11"
+                rx="2"
+                ry="1.5"
+              ></ellipse>{" "}
+              <ellipse
+                transform="rotate(-30 10 10)"
+                cx="10"
+                cy="10"
+                rx="2"
+                ry="1.5"
+              ></ellipse>{" "}
+              <path d="M4 2h1v9H4zM11 1h1v9h-1zM4 2l8-2v1L4 3V2z"></path>{" "}
+            </g>{" "}
+          </g>{" "}
+        </g>{" "}
+      </g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <g fill="none" fillRule="evenodd">
+          {" "}
+          <g>
+            {" "}
+            <g stroke="#13314e" strokeWidth="2" transform="translate(1 1)">
+              {" "}
+              <rect width="24" height="32" rx="1"></rect>{" "}
+            </g>{" "}
+            <g transform="translate(1 1) translate(5 10)" fill="#215cba">
+              {" "}
+              <ellipse
+                id="Oval-54"
+                transform="rotate(-30 3 11)"
+                cx="3"
+                cy="11"
+                rx="2"
+                ry="1.5"
+              ></ellipse>{" "}
+              <ellipse
+                transform="rotate(-30 10 10)"
+                cx="10"
+                cy="10"
+                rx="2"
+                ry="1.5"
+              ></ellipse>{" "}
+              <path d="M4 2h1v9H4zM11 1h1v9h-1zM4 2l8-2v1L4 3V2z"></path>{" "}
+            </g>{" "}
+          </g>{" "}
+        </g>{" "}
+      </g>
+    </svg>
+  );
+};
