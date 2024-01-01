@@ -237,3 +237,23 @@ export const EmptyMusic = () => {
     </svg>
   );
 };
+
+export const EmptyVideo = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="60px"
+      height="60px"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#5659c8"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className="lucide lucide-video"
+    >
+      <path d="m22 8-6 4 6 4V8Z" />
+      <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
+    </svg>
+  );
+};
