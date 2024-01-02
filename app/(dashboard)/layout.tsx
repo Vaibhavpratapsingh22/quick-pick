@@ -1,10 +1,18 @@
 "use client";
 import NavBar from "@/components/custom/NavBar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
+import { getApiCount } from "@/lib/api-limit";
 
-const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DasboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = useState(false);
+  const [apiCount, setApiCount] = useState(0);
+  useEffect(() => {
+    getApiCount().then((res: any) => {
+      setApiCount(res);
+    });
+  }, []);
+
   return (
     <>
       <button
@@ -53,7 +61,7 @@ const DasboardLayout = ({ children }: { children: React.ReactNode }) => {
         }
         aria-label="Sidebar"
       >
-        <Sidebar />
+        <Sidebar apiLimitCounter={apiCount}/>
       </aside>
       <div className="p-0 sm:ml-64">
         <div className=" p-5">

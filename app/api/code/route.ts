@@ -1,3 +1,4 @@
+import { increaseApiCount, userHasLimit } from "@/lib/api-limit";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -26,11 +27,16 @@ export async function POST(req: Request) {
     if (!messages) {
       return new NextResponse("Prompt is required", { status: 400 });
     }
+    const freeTrial = await userHasLimit();
+    if (!freeTrial) {
+      return new NextResponse("Free trial limit reached", { status: 403 });
+    }
     const response: OpenAI.Chat.ChatCompletion =
-      await openai.chat.completions.create({
-        messages: [prompt, ...messages],
-        model: "gpt-3.5-turbo",
-      });
+    await openai.chat.completions.create({
+      messages: [prompt, ...messages],
+      model: "gpt-3.5-turbo",
+    });
+    await increaseApiCount();
     return NextResponse.json(response);
   } catch (err: any) {
     return new NextResponse("Internal Errors", { status: 500 });
