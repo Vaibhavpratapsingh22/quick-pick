@@ -22,9 +22,11 @@ import {
 } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useProModel } from "@/hooks/useProModal";
 
 const ImageGeneration = () => {
   const router = useRouter();
+  const proModal = useProModel();
   const [images, setImages] = useState<any[]>([]);
   const [error, setError] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,8 +46,10 @@ const ImageGeneration = () => {
       const urls = response?.data?.map((image: { url: string }) => image.url);
       setImages(urls);
       form.reset();
-    } catch (e) {
-      console.log(e);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpenPro();
+      }
     } finally {
       router.refresh();
     }

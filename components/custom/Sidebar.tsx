@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Wind } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import FreeCounter from "./free-counter";
+import FreeCounter from "./FreeCounter";
 
 type TSidebar = {
   apiLimitCounter: number;
@@ -11,7 +11,6 @@ type TSidebar = {
 const Sidebar = ({ apiLimitCounter }: TSidebar) => {
   const pathName = usePathname();
   const router = useRouter();
-  console.log(apiLimitCounter);
   return (
     <>
       <div className="h-full px-3 py-4 overflow-y-auto bg-slate-100 flex justify-between flex-col">
@@ -49,7 +48,7 @@ const Sidebar = ({ apiLimitCounter }: TSidebar) => {
           </ul>
         </div>
         <div>
-          <FreeCounter />
+          <FreeCounter apiLimitCount ={apiLimitCounter} />
         </div>
       </div>
     </>

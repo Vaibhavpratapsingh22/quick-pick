@@ -1,4 +1,4 @@
-import { increaseApiCount, userHasLimit } from "@/lib/api-limit";
+import { increaseApiCount, userHasLimit } from "@/lib/apiLimitCheck";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";

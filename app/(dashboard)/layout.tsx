@@ -2,17 +2,24 @@
 import NavBar from "@/components/custom/NavBar";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
-import { getApiCount } from "@/lib/api-limit";
+import { getApiCount } from "@/lib/apiLimitCheck";
 
 const DasboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = useState(false);
   const [apiCount, setApiCount] = useState(0);
   useEffect(() => {
-    getApiCount().then((res: any) => {
-      setApiCount(res);
-    });
+    const fetchApiCount = async () => {
+      try {
+        const count = await getApiCount();
+        setApiCount(count);
+      } catch (error) {
+        console.error("Error fetching API count:", error);
+      }
+    };
+    
+    fetchApiCount();
   }, []);
-
+  
   return (
     <>
       <button
