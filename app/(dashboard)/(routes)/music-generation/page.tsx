@@ -13,9 +13,11 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { EmptyMusic } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
+import { useProModel } from "@/hooks/useProModal";
 
 const MusicGeneration = () => {
   const router = useRouter();
+  const proModal = useProModel();
   const [generatedMusic, setGeneratedMusic] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -33,8 +35,10 @@ const MusicGeneration = () => {
       const response = await axios.post("/api/music", data);
       setGeneratedMusic(response.data.audio);
       form.reset();
-    } catch (e) {
-      console.log(e);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpenPro();
+      }
     } finally {
       router.refresh();
     }

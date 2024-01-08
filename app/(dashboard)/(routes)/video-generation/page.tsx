@@ -13,9 +13,11 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { EmptyMusic, EmptyVideo } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
+import { useProModel } from "@/hooks/useProModal";
 
 const VideoGeneration = () => {
   const router = useRouter();
+  const proModal = useProModel();
   const [generatedVideos, setGeneratedVideos] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,8 +34,10 @@ const VideoGeneration = () => {
       const response = await axios.post("/api/video", data);
       setGeneratedVideos(response.data[0]);
       form.reset();
-    } catch (e) {
-      console.log(e);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpenPro();
+      }
     } finally {
       router.refresh();
     }
