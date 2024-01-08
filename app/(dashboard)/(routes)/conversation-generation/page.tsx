@@ -13,13 +13,15 @@ import { useRouter } from "next/navigation";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import axios from "axios";
 import { cn } from "@/lib/utils";
-import UserAvatar from "@/components/custom/user-avatar";
+import UserAvatar from "@/components/custom/UserAvatar";
 import BotAvatar from "@/components/custom/bot-avatar";
 import { EmptyConversation } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
+import { useProModel } from "@/hooks/useProModal";
 
 const Conversation = () => {
   const router = useRouter();
+  const proModal = useProModel();
   const [generatedMessage, setGeneratedMessage] = useState<any[]>([]);
   const [error, setError] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,9 +48,11 @@ const Conversation = () => {
         response?.data?.choices[0]?.message,
       ]);
       form.reset();
-    } catch (e) {
-      console.log(e);
-    } finally {
+    } catch (error:any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpenPro();
+      }
+      }finally {
       router.refresh();
     }
   };
