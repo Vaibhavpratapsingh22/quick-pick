@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const secret = process.env.STRIPE_WEBHOOK_SECRET || "";
+const secret = process.env.STRIPE_WEBHOOK_KEY || "";
 
 export async function POST(req: Request) {
   try {
@@ -54,7 +54,6 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ result: event, ok: true });
-    
   } catch (error) {
     console.error(error);
     return NextResponse.json(

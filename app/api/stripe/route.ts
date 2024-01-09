@@ -34,7 +34,7 @@ export async function GET() {
         line_items: [
           {
             price_data: {
-              currency: "usd",
+              currency: "inr",
               product_data: {
                 name: "QuickPick Pro",
                 description:
