@@ -3,11 +3,17 @@ import NavBar from "@/components/custom/NavBar";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
 import { getApiCount } from "@/lib/apiLimitCheck";
+import { checkUserSubscription } from "@/lib/subscription";
 
-const DasboardLayout = async ({ children, count }: { children: React.ReactNode, count:number }) => {
+const DasboardLayout = async ({
+  children,
+  count,
+}: {
+  children: React.ReactNode;
+  count: number;
+}) => {
   const [show, setShow] = useState(false);
-  const [apiCount, setApiCount] = useState(0);
-  
+  const isPro = await checkUserSubscription();
   return (
     <>
       <button
@@ -56,7 +62,7 @@ const DasboardLayout = async ({ children, count }: { children: React.ReactNode, 
         }
         aria-label="Sidebar"
       >
-        <Sidebar apiLimitCounter={count} />
+        <Sidebar apiLimitCounter={count} isPro={isPro} />
       </aside>
       <div className="p-0 sm:ml-64">
         <div className=" p-5">
@@ -68,6 +74,4 @@ const DasboardLayout = async ({ children, count }: { children: React.ReactNode, 
   );
 };
 
-
 export default DasboardLayout;
-

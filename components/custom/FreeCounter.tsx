@@ -9,14 +9,19 @@ import { useProModel } from "@/hooks/useProModal";
 
 type TFreeCounterProps = {
   apiLimitCount: number;
+  isPro: boolean;
 };
-const FreeCounter = ({ apiLimitCount = 0 }: TFreeCounterProps) => {
+const FreeCounter = ({
+  apiLimitCount = 0,
+  isPro = false,
+}: TFreeCounterProps) => {
   const proModal = useProModel();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
+  if (isPro) return null;
   return (
     <>
       <div className="px-3">
@@ -26,10 +31,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: TFreeCounterProps) => {
               <p>
                 {apiLimitCount} / {MAX_FREE_COUNT} Free Generations
               </p>
-              <Progress
-                className="h-3 "
-                value={(apiLimitCount * 100) / 5}
-              />
+              <Progress className="h-3 " value={(apiLimitCount * 100) / 5} />
             </div>
             <Button className="w-full" onClick={proModal.onOpenPro}>
               Get Premium <Zap className="w-4 h-4 ml-1 fill-white" />
