@@ -3,17 +3,17 @@ import NavBar from "@/components/custom/NavBar";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
 import { getApiCount } from "@/lib/apiLimitCheck";
-import { checkUserSubscription } from "@/lib/subscription";
 
 const DasboardLayout = async ({
   children,
   count,
+  isPro,
 }: {
   children: React.ReactNode;
   count: number;
+  isPro: boolean;
 }) => {
   const [show, setShow] = useState(false);
-  const isPro = await checkUserSubscription();
   return (
     <>
       <button

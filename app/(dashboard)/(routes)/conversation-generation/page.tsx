@@ -18,6 +18,7 @@ import BotAvatar from "@/components/custom/bot-avatar";
 import { EmptyConversation } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
 import { useProModel } from "@/hooks/useProModal";
+import toast from "react-hot-toast";
 
 const Conversation = () => {
   const router = useRouter();
@@ -48,11 +49,13 @@ const Conversation = () => {
         response?.data?.choices[0]?.message,
       ]);
       form.reset();
-    } catch (error:any) {
+    } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpenPro();
+      } else {
+        toast.error("Something went wrong. Please try again later.");
       }
-      }finally {
+    } finally {
       router.refresh();
     }
   };

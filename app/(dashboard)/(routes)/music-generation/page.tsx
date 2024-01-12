@@ -14,6 +14,7 @@ import axios from "axios";
 import { EmptyMusic } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
 import { useProModel } from "@/hooks/useProModal";
+import toast from "react-hot-toast";
 
 const MusicGeneration = () => {
   const router = useRouter();
@@ -38,6 +39,8 @@ const MusicGeneration = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpenPro();
+      } else {
+        toast.error("Something went wrong. Please try again later.");
       }
     } finally {
       router.refresh();
