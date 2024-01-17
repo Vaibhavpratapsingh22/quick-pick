@@ -2,12 +2,9 @@
 import NavBar from "@/components/custom/NavBar";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/custom/Sidebar";
-import { getApiCount } from "@/lib/apiLimitCheck";
 
-const DasboardLayout = async ({ children, count }: { children: React.ReactNode, count:number }) => {
-  const [show, setShow] = useState(false);
-  const [apiCount, setApiCount] = useState(0);
-  
+const DasboardLayout = ({ children, count, isPro }: { children: React.ReactNode, count:number, isPro:boolean }) => {
+  const [show, setShow] = useState(false);  
   return (
     <>
       <button
@@ -16,8 +13,8 @@ const DasboardLayout = async ({ children, count }: { children: React.ReactNode, 
         aria-controls="default-sidebar"
         type="button"
         onClick={() => setShow(!show)}
-        className={`inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 sm:hidden hover:bg-gray-100  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ${
-          show ? "!ml-[260px]" : "ml-0"
+        className={`inline-flex items-center  mt-2 p-2 bg-[#503C3C] ms-3 rounded text-sm text-white sm:hidden hover:text-red-500  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ${
+          show ? "!ml-[290px]" : "ml-0"
         }`}
       >
         {show ? (
@@ -51,14 +48,14 @@ const DasboardLayout = async ({ children, count }: { children: React.ReactNode, 
         id="default-sidebar"
         className={
           show
-            ? "fixed top-0 left-0 z-40 w-64 h-screen transition-transform sm:translate-x-0 transform-none"
-            : "fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            ? "fixed top-0 left-0 z-40 w-72 h-screen transition-transform sm:translate-x-0 transform-none"
+            : "fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0"
         }
         aria-label="Sidebar"
       >
-        <Sidebar apiLimitCounter={count} />
+        <Sidebar apiLimitCounter={count} isPro={isPro} />
       </aside>
-      <div className="p-0 sm:ml-64">
+      <div className="p-0 sm:ml-72 bg-[#fff] h-full">
         <div className=" p-5">
           <NavBar />
         </div>
@@ -68,6 +65,4 @@ const DasboardLayout = async ({ children, count }: { children: React.ReactNode, 
   );
 };
 
-
 export default DasboardLayout;
-

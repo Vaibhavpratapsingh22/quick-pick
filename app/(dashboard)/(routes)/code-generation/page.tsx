@@ -19,6 +19,9 @@ import { Empty } from "@/components/custom/Empty";
 import { EmptyCode } from "@/components/ui/emptyConversation";
 import ReactMarkdown from "react-markdown";
 import { useProModel } from "@/hooks/useProModal";
+import toast from "react-hot-toast";
+import Image from "next/image";
+
 
 const CodeGeneration = () => {
   const router = useRouter();
@@ -49,9 +52,11 @@ const CodeGeneration = () => {
         response?.data?.choices[0]?.message,
       ]);
       form.reset();
-    } catch (error:any) {
+    } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpenPro();
+      } else {
+        toast.error("Something went wrong. Please try again later.");
       }
     } finally {
       router.refresh();
@@ -61,15 +66,15 @@ const CodeGeneration = () => {
     if (form.formState.errors.prompt) {
       setError(!error);
     }
-  }, [form.formState.errors]);
+  }, [form.formState.errors, error]);
   return (
     <div>
       <HeadingComp
         title="Code Generation"
         description="Stuck in code? Ask me."
         Icon={Code}
-        color="text-green-500"
-        bgColor="bg-green-500/10"
+        color="text-[#FF9800]"
+        bgColor="bg-black/10"
       />
       <div className="px-4 py-6 mt-4 bg-white rounded-lg shadow-md">
         <div>
@@ -96,7 +101,7 @@ const CodeGeneration = () => {
 
               <Button
                 type="submit"
-                className="col-span-12 lg:col-span-2 md:col-span-4 w-full"
+                className="col-span-12 lg:col-span-2 md:col-span-4 w-full bg-[#6B240C]"
                 disabled={isLoading}
               >
                 Get Code
@@ -115,9 +120,10 @@ const CodeGeneration = () => {
           <div className="flex items-center mt-10 justify-center">
             <div className="relative flex justify-center items-center">
               <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#111827]"></div>
-              <img
+              <Image
                 src="/avatar-thinking.svg"
                 className="rounded-full h-20 w-16"
+                alt=""
               />
             </div>
           </div>

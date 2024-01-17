@@ -18,6 +18,8 @@ import BotAvatar from "@/components/custom/bot-avatar";
 import { EmptyConversation } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
 import { useProModel } from "@/hooks/useProModal";
+import toast from "react-hot-toast";
+import Image from "next/image";
 
 const Conversation = () => {
   const router = useRouter();
@@ -48,11 +50,13 @@ const Conversation = () => {
         response?.data?.choices[0]?.message,
       ]);
       form.reset();
-    } catch (error:any) {
+    } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpenPro();
+      } else {
+        toast.error("Something went wrong. Please try again later.");
       }
-      }finally {
+    } finally {
       router.refresh();
     }
   };
@@ -60,7 +64,7 @@ const Conversation = () => {
     if (form.formState.errors.prompt) {
       setError(!error);
     }
-  }, [form.formState.errors]);
+  }, [form.formState.errors, error]);
   return (
     <div>
       <HeadingComp
@@ -95,7 +99,7 @@ const Conversation = () => {
 
               <Button
                 type="submit"
-                className="col-span-12 lg:col-span-2 md:col-span-4 w-full"
+                className="col-span-12 lg:col-span-2 md:col-span-4 w-full bg-[#6B240C]"
                 disabled={isLoading}
               >
                 Generate
@@ -114,9 +118,10 @@ const Conversation = () => {
           <div className="flex items-center mt-10 justify-center">
             <div className="relative flex justify-center items-center">
               <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#111827]"></div>
-              <img
+              <Image
                 src="/avatar-thinking.svg"
                 className="rounded-full h-20 w-16"
+                alt=""
               />
             </div>
           </div>
