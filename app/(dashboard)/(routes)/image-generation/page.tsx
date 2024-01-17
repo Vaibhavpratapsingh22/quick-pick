@@ -61,7 +61,7 @@ const ImageGeneration = () => {
     if (form.formState.errors.prompt) {
       setError(!error);
     }
-  }, [form.formState.errors]);
+  }, [form.formState.errors, error]);
   return (
     <div>
       <HeadingComp
@@ -149,7 +149,7 @@ const ImageGeneration = () => {
               />
               <Button
                 type="submit"
-                className="col-span-12 lg:col-span-2 md:col-span-6 w-full"
+                className="col-span-12 lg:col-span-2 md:col-span-6 w-full bg-[#6B240C]"
                 disabled={isLoading}
               >
                 Show Images
@@ -168,9 +168,10 @@ const ImageGeneration = () => {
           <div className="flex items-center mt-10 justify-center">
             <div className="relative flex justify-center items-center">
               <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#111827]"></div>
-              <img
+              <Image
                 src="/avatar-thinking.svg"
                 className="rounded-full h-20 w-16"
+                alt=""
               />
             </div>
           </div>

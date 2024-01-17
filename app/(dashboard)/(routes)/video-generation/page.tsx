@@ -15,6 +15,7 @@ import { EmptyMusic, EmptyVideo } from "@/components/ui/emptyConversation";
 import { Empty } from "@/components/custom/Empty";
 import { useProModel } from "@/hooks/useProModal";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const VideoGeneration = () => {
   const router = useRouter();
@@ -49,7 +50,7 @@ const VideoGeneration = () => {
     if (form.formState.errors.prompt) {
       setError(!error);
     }
-  }, [form.formState.errors]);
+  }, [form.formState.errors, error]);
   return (
     <div>
       <HeadingComp
@@ -84,7 +85,7 @@ const VideoGeneration = () => {
 
               <Button
                 type="submit"
-                className="col-span-12 lg:col-span-2 md:col-span-4 w-full"
+                className="col-span-12 lg:col-span-2 md:col-span-4 w-full bg-[#6B240C]"
                 disabled={isLoading}
               >
                 Watch
@@ -103,9 +104,10 @@ const VideoGeneration = () => {
           <div className="flex items-center mt-10 justify-center">
             <div className="relative flex justify-center items-center">
               <div className="absolute animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-[#111827]"></div>
-              <img
+              <Image
                 src="/avatar-thinking.svg"
                 className="rounded-full h-20 w-16"
+                alt=""
               />
             </div>
           </div>
