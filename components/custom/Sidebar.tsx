@@ -51,7 +51,7 @@ const Sidebar = ({ apiLimitCounter, isPro = false }: TSidebar) => {
           </ul>
         </div>
         <div>
-          <FreeCounter apiLimitCount={apiLimitCounter} />
+          <FreeCounter apiLimitCount={apiLimitCounter} isPro={isPro} />
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import * as z from "zod";
 import HeadingComp from "@/components/custom/Heading";
-import { Download, MessageCircle } from "lucide-react";
+import { Download, ImageIcon, MessageCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -67,9 +67,9 @@ const ImageGeneration = () => {
       <HeadingComp
         title="Image Generator"
         description="Generate images from text."
-        Icon={MessageCircle}
-        color="text-green-500"
-        bgColor="bg-green-500/10"
+        Icon={ImageIcon}
+        color="text-[#FF004D]"
+        bgColor="bg-black/10"
       />
       <div className="px-4 py-6 mt-4 bg-white rounded-lg shadow-md">
         <div>

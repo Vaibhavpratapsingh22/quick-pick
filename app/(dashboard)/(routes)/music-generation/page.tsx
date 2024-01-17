@@ -58,8 +58,8 @@ const MusicGeneration = () => {
         title="Music Generation"
         description="Type anything and get the music playing."
         Icon={Music}
-        color="text-red-500"
-        bgColor="bg-red-500/10"
+        color="text-[#DC84F3]"
+        bgColor="bg-black/10"
       />
       <div className="px-4 py-6 mt-4 bg-white rounded-lg shadow-md">
         <div>

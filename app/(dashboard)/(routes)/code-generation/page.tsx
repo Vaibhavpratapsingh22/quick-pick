@@ -73,8 +73,8 @@ const CodeGeneration = () => {
         title="Code Generation"
         description="Stuck in code? Ask me."
         Icon={Code}
-        color="text-green-500"
-        bgColor="bg-green-500/10"
+        color="text-[#FF9800]"
+        bgColor="bg-black/10"
       />
       <div className="px-4 py-6 mt-4 bg-white rounded-lg shadow-md">
         <div>

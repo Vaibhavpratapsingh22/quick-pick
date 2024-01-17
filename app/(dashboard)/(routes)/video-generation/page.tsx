@@ -56,9 +56,9 @@ const VideoGeneration = () => {
       <HeadingComp
         title="Video Generation"
         description="Type your thought and turn into video."
-        Icon={Music}
-        color="text-red-500"
-        bgColor="bg-red-500/10"
+        Icon={Video}
+        color="text-[#11235A]"
+        bgColor="bg-black/10"
       />
       <div className="px-4 py-6 mt-4 bg-white rounded-lg shadow-md">
         <div>
@@ -112,7 +112,7 @@ const VideoGeneration = () => {
             </div>
           </div>
         )}
-        {setGeneratedVideos.length === 0 && !isLoading && (
+        {setGeneratedVideos.length !> 0 && !isLoading && (
           <Empty label="Create your dream video here." Icon={EmptyVideo} />
         )}
         {generatedVideos && (
