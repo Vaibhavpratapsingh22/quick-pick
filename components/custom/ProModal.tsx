@@ -13,6 +13,7 @@ import { Badge } from "../ui/badge";
 import { Check, Zap } from "lucide-react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const ProModal = () => {
   const proModal = useProModel();
@@ -24,6 +25,7 @@ const ProModal = () => {
       window.location.href = response.data.url;
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }

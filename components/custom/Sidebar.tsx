@@ -7,8 +7,9 @@ import FreeCounter from "./FreeCounter";
 
 type TSidebar = {
   apiLimitCounter: number;
+  isPro: boolean;
 };
-const Sidebar = ({ apiLimitCounter }: TSidebar) => {
+const Sidebar = ({ apiLimitCounter, isPro = false }: TSidebar) => {
   const pathName = usePathname();
   const router = useRouter();
   return (

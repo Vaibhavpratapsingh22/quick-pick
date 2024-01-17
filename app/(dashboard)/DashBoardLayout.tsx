@@ -54,7 +54,7 @@ const DasboardLayout = ({ children, count }: { children: React.ReactNode, count:
         }
         aria-label="Sidebar"
       >
-        <Sidebar apiLimitCounter={count} />
+        <Sidebar apiLimitCounter={count} isPro={isPro} />
       </aside>
       <div className="p-0 sm:ml-72 bg-[#fff] h-full">
         <div className=" p-5">
@@ -66,6 +66,4 @@ const DasboardLayout = ({ children, count }: { children: React.ReactNode, count:
   );
 };
 
-
 export default DasboardLayout;
-

@@ -1,4 +1,5 @@
 import { increaseApiCount, userHasLimit } from "@/lib/apiLimitCheck";
+import { checkUserSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
@@ -9,6 +10,7 @@ const replicate = new Replicate({
 
 export async function POST(req: Request) {
   const { userId } = auth();
+  const isPro = await checkUserSubscription();
   const body = await req.json();
   const { prompt } = body;
   try {
@@ -19,7 +21,7 @@ export async function POST(req: Request) {
       return new NextResponse("Prompt is required", { status: 400 });
     }
     const freeTrial = await userHasLimit();
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial limit reached", { status: 403 });
     }
     const response = await replicate.run(
@@ -29,9 +31,9 @@ export async function POST(req: Request) {
           prompt_a: prompt,
         },
       }
-      );
-      await increaseApiCount();
-      return NextResponse.json(response);
+    );
+    if (!isPro) await increaseApiCount();
+    return NextResponse.json(response);
   } catch (err: any) {
     return new NextResponse("Internal Errors", { status: 500 });
   }

@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   MessageCircle,
   Music,
+  Settings,
   Video,
 } from "lucide-react";
 
@@ -49,5 +50,12 @@ export const availOptions = [
     href: "/code-generation",
     color: "text-green-500",
     bgColor: "bg-green-500/10",
+  },
+  {
+    name:"Settings",
+    icon: Settings,
+    href: "/settings",
+    color: "text-gray-500",
+    bgColor: "bg-gray-500/10",
   },
 ];
