@@ -2,7 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs";
 
 import { absoluteUrl } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import prismadb from "@/lib/prismadb";
+import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 
 const settingUrl = absoluteUrl("/settings");
@@ -13,7 +13,7 @@ export async function GET(): Promise<void | NextResponse<any>> {
     const user = await currentUser();
     
     if (userId) {
-      const userSubscription = await prismadb.userSubscription.findUnique({
+      const userSubscription = await prisma.userSubscription.findUnique({
         where: {
           userId,
         },

@@ -43,6 +43,7 @@ export async function POST(req: Request) {
     }
     return NextResponse.json(response);
   } catch (err: any) {
-    return new NextResponse("Internal Errors", { status: 500 });
+    console.error('Error processing request:', err);
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 }

@@ -1,4 +1,4 @@
-import prismadb from "@/lib/prismadb";
+import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       const subscription = await stripe.subscriptions.retrieve(
         session.subscription as string
       );
-      await prismadb.userSubscription.create({
+      await prisma.userSubscription.create({
         data: {
           userId: session.metadata.userId,
           stripeSubscriptionId: subscription.id,
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       const subscription = await stripe.subscriptions.retrieve(
         session.subscription as string
       );
-      await prismadb.userSubscription.update({
+      await prisma.userSubscription.update({
         where: {
           stripeSubscriptionId: subscription.id,
         },
